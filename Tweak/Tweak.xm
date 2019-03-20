@@ -61,8 +61,8 @@ NSString *translationLanguage;
         [items removeObject:self.slcSearchItem];
     }
 
-    if (!translationEnabled) [items removeObject:self.slcTranslateItem];
-    if (!searchEnabled) [items removeObject:self.slcSearchItem];
+    if (!enabled || !translationEnabled) [items removeObject:self.slcTranslateItem];
+    if (!enabled || !searchEnabled) [items removeObject:self.slcSearchItem];
 
     self.extraItems = items;
 
