@@ -6,7 +6,7 @@ UIWindow* SLCGetMainWindow() {
 
 @implementation SLCWindow
 
-@synthesize webViewConfig, webView, isOpen, gradientLayer, closeLabel, activityIndicatorView, topPadding;
+@synthesize webViewConfig, webView, isOpen, blurView, closeLabel, activityIndicatorView, topPadding;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -16,12 +16,11 @@ UIWindow* SLCGetMainWindow() {
     self.hidden = YES;
     self.alpha = 0.0;
 
-    self.gradientLayer = [CAGradientLayer layer];
-    self.gradientLayer.frame = self.bounds;
-    self.gradientLayer.colors = @[(id)[UIColor clearColor].CGColor, (id)[UIColor blackColor].CGColor];
-    self.gradientLayer.startPoint = CGPointMake(0, 0.5);
-    self.gradientLayer.endPoint = CGPointMake(0, 1.2);
-    [self.layer insertSublayer:self.gradientLayer atIndex:0];
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    self.blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    self.blurView.frame = self.bounds;
+    self.blurView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self addSubview:self.blurView];
 
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
     singleTap.numberOfTapsRequired = 1;
@@ -48,7 +47,7 @@ UIWindow* SLCGetMainWindow() {
     self.closeLabel.textAlignment = NSTextAlignmentCenter;
     self.closeLabel.textColor = [UIColor whiteColor];
     self.closeLabel.text = @"Tap here to close";
-    [self.closeLabel setFont:[UIFont boldSystemFontOfSize:24]];
+    [self.closeLabel setFont:[UIFont systemFontOfSize:24]];
     [self addSubview: self.closeLabel];
 
     self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
