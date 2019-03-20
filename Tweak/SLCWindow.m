@@ -43,6 +43,8 @@ UIWindow* SLCGetMainWindow() {
     self.activityIndicatorView.hidesWhenStopped = true;
     [self.activityIndicatorView setUserInteractionEnabled:NO];
     [self.webView addSubview: self.activityIndicatorView];
+    
+    [self.activityIndicatorView startAnimating];
 
     return self;
 }
@@ -80,8 +82,6 @@ UIWindow* SLCGetMainWindow() {
 }
 
 -(void)open:(NSString*)url {
-    [self.activityIndicatorView startAnimating];
-    
     if (!self.isOpen) [self setVisibility:true];
     NSURL *nsUrl = [NSURL URLWithString:url];
     NSURLRequest *request = [NSURLRequest requestWithURL:nsUrl];
