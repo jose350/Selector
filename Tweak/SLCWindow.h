@@ -8,6 +8,7 @@
 @property (nonatomic, assign) bool isOpen;
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, retain) CAGradientLayer* gradientLayer;
+@property (nonatomic, assign) CGFloat topPadding;
 
 -(void)setVisibility:(bool)state;
 -(void)handleTap;

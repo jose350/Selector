@@ -6,7 +6,7 @@ UIWindow* SLCGetMainWindow() {
 
 @implementation SLCWindow
 
-@synthesize webViewConfig, webView, isOpen, gradientLayer, closeLabel, activityIndicatorView;
+@synthesize webViewConfig, webView, isOpen, gradientLayer, closeLabel, activityIndicatorView, topPadding;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -14,6 +14,7 @@ UIWindow* SLCGetMainWindow() {
 
     [self setUserInteractionEnabled:YES];
     self.hidden = YES;
+    self.alpha = 0.0;
 
     self.gradientLayer = [CAGradientLayer layer];
     self.gradientLayer.frame = self.bounds;
@@ -26,9 +27,21 @@ UIWindow* SLCGetMainWindow() {
     singleTap.numberOfTapsRequired = 1;
     [self addGestureRecognizer:singleTap];
 
+    self.topPadding = 0;
+    CGFloat sidePadding = 20;
+
+    if (@available(iOS 11.0, *)) {
+        UIWindow *window = UIApplication.sharedApplication.keyWindow;
+        self.topPadding = window.safeAreaInsets.top;
+    }
+
+    self.topPadding += 20;
+
     self.webViewConfig = [[WKWebViewConfiguration alloc] init];
-    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width,self.frame.size.height * 0.8) configuration:self.webViewConfig];
+    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(sidePadding, self.frame.size.height, self.frame.size.width - sidePadding * 2, self.frame.size.height * 0.8 - self.topPadding) configuration:self.webViewConfig];
     self.webView.navigationDelegate = self;
+    self.webView.layer.cornerRadius = 13;
+    self.webView.layer.masksToBounds = true;
     [self addSubview:self.webView];
 
     self.closeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,self.frame.size.height * 0.8,self.frame.size.width,self.frame.size.height * 0.2)];
@@ -58,17 +71,30 @@ UIWindow* SLCGetMainWindow() {
     if (state) {
         [self setHidden: NO];
 
-        if (self.alpha != 1.0) self.alpha = 0.0;
-        [UIView animateWithDuration:(0.3) delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        CGRect webViewFrame = self.webView.frame;
+        if (self.alpha != 1.0) {
+            self.alpha = 0.0;
+            webViewFrame.origin.y = self.frame.size.height;
+            self.webView.frame = webViewFrame;
+        }
+
+        webViewFrame.origin.y = self.topPadding;
+
+        [UIView animateWithDuration:(0.2) delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.alpha = 1.0;
+            self.webView.frame = webViewFrame;
         } completion:NULL];
 
         [SLCGetMainWindow() endEditing:YES];
     } else {
         self.alpha = 1.0;
 
+        CGRect webViewFrame = self.webView.frame;
+        webViewFrame.origin.y = self.frame.size.height;
+
         [UIView animateWithDuration:(0.3) delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.alpha = 0.0;
+            self.webView.frame = webViewFrame;
         } completion:NULL];
 
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (0.3) * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
