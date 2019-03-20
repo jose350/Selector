@@ -81,7 +81,7 @@
 			<key>cell</key>
 			<string>PSLinkListCell</string>
 			<key>default</key>
-			<string>https://encrypted.google.com/search?q=%s</string>
+			<string>https://www.google.com/search?q=%s</string>
 			<key>detail</key>
 			<string>PSListItemsController</string>
 			<key>defaults</key>
@@ -92,7 +92,7 @@
 			<string>SearchEngine</string>
 			<key>validValues</key>
 			<array>
-				<string>https://encrypted.google.com/search?q=%s</string>
+				<string>https://www.google.com/search?q=%s</string>
 				<string>https://www.bing.com/search?q=%s</string>
 				<string>https://duckduckgo.com/?q=%s</string>
 				<string>http://www.baidu.com/s?wd=%s</string>
@@ -167,12 +167,14 @@
 			<key>validValues</key>
 			<array>
 				<string>https://translate.google.com/?vi=c#auto/%l/%s</string>
+				<string>https://translate.google.cn/?vi=c#auto/%l/%s</string>
 				<string>https://fanyi.baidu.com/#auto/%l/%s</string>
 				<string>itranslate://translate?from=auto&amp;to=%l&amp;text=%s</string>
 			</array>
 			<key>validTitles</key>
 			<array>
 				<string>Google Translate (web)</string>
+				<string>Google Translate (web/China)</string>
 				<string>Baidu (web)</string>
 				<string>iTranslate (app)</string>
 			</array>
