@@ -89,7 +89,7 @@
 			<key>label</key>
 			<string>SEARCH_ENGINE</string>
 			<key>key</key>
-			<string>SearchUrl</string>
+			<string>SearchEngine</string>
 			<key>validValues</key>
 			<array>
 				<string>https://encrypted.google.com/search?q=%s</string>
