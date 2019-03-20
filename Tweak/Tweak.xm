@@ -172,7 +172,7 @@ NSString *translationLanguage;
         @"TranslationService": @"https://translate.google.com/?vi=c#auto/%l/%s",
         @"SearchEnabled": @YES,
         @"SearchPopup": @NO,
-        @"SearchEngine": @"https://encrypted.google.com/search?q=%s",
+        @"SearchEngine": @"https://www.google.com/search?q=%s",
     }];
 
     [preferences registerBool:&enabled default:YES forKey:@"Enabled"];
