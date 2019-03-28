@@ -1,20 +1,21 @@
+
 {
-  "ENABLED" = "Enabled";
+  "ENABLED" = "Habilitado";
 
-  "SEARCH" = "Search";
-  "SEARCH_ENGINE" = "Engine";
+  "SEARCH" = "Buscar";
+  "SEARCH_ENGINE" = "Motor de Busqueda";
 
-  "TRANSLATION" = "Translation";
-  "TRANSLATION_SERVICE" = "Service";
-  "TRANSLATION_LANGUAGE" = "Language";
+  "TRANSLATION" = "Traducción";
+  "TRANSLATION_SERVICE" = "Servicio";
+  "TRANSLATION_LANGUAGE" = "Idioma";
 
-  "POPUP" = "Popup";
+  "POPUP" = "Surgir";
 
-  "ARE_YOU_SURE_TO_RESET_PREFS" = "Are you sure you want to reset all your preferences? This cannot be undone.";
+  "ARE_YOU_SURE_TO_RESET_PREFS" = "¿Estás seguro de que deseas restablecer todas tus preferencias? Esto no se puede deshacer.";
   "OK" = "OK";
-  "CANCEL" = "Cancel";
-  "RESET_PREFS" = "Restore default settings and respring";
-  "SOURCE_CODE" = "Source code";
-  "DONATE_TO_NEPETA" = "Donate to Nepeta";
-  "SUPPORT_ME" = "Support me!";
+  "CANCEL" = "Cancelar";
+  "RESET_PREFS" = "Restaura la configuración por defecto y respring";
+  "SOURCE_CODE" = "Código fuente";
+  "DONATE_TO_NEPETA" = "Dona a Nepeta";
+  "SUPPORT_ME" = "Apoyarme!";
 }
